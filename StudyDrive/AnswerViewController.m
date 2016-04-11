@@ -19,6 +19,7 @@
     AnswerScrollView  * sview;
     SelectModelView * ModelView;
     SheetView * _sheetView;
+ 
     
 }
 
@@ -33,11 +34,13 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
         [self createData];
+    [self createModelView];
     [self.view addSubview:sview];
-
+ 
     [self createToolBar];
-   [self createModelView];
-  [self createSheetView];
+
+   
+   [self createSheetView];
     
 }
 
@@ -173,8 +176,47 @@ sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.
 //        }
 //    
 
+    }else if (_answertype == 5){
+        NSMutableArray * temArr = [[NSMutableArray alloc]init];
+        NSArray * array = [MyDataManager getData:answer];
+        NSMutableArray * dataArray = [[NSMutableArray alloc]init];
+        [temArr addObjectsFromArray:array];
+        
+ //       int t = (int)temArr.count;
+        for (int i = 0; i < 100; i++) {
+            int index = arc4random()%(temArr.count);
+            [dataArray addObject:temArr[index]];
+            [temArr removeObjectAtIndex:index];
+        }
+        sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:dataArray];
+        [self createNavBtn];
+        
     }
 
+}
+
+-(void)createNavBtn{
+    UIBarButtonItem * itemLeft = [[UIBarButtonItem alloc]init];
+    itemLeft.title = @"返回";
+    [itemLeft setTarget:self];
+    [itemLeft setAction:@selector(clickNavBtnReturn)];
+    self.navigationItem.leftBarButtonItem = itemLeft;
+    
+    
+}
+
+-(void)clickNavBtnReturn{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"1" message:@"2" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * oneaction = [UIAlertAction actionWithTitle:@"3" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction * otheraction = [UIAlertAction actionWithTitle:@"4" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:oneaction];
+    [alert addAction:otheraction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)createSheetView{

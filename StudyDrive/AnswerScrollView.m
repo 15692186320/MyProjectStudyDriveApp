@@ -196,6 +196,8 @@
     lab.font = [UIFont systemFontOfSize:16];
     lab.numberOfLines = 0;
     [view addSubview:lab];
+ 
+    
 
     return view;
 }

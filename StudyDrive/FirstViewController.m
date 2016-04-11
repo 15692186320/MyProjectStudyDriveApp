@@ -11,6 +11,7 @@
 #import "TestSelectViewController.h"
 #import "MyDataManager.h"
 #import "AnswerViewController.h"
+#import "MainTestViewController.h"
 @interface FirstViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView * _tableView;
@@ -138,6 +139,16 @@
             TestSelectViewController * con = [[TestSelectViewController alloc]init];
             con.dataArray = [MyDataManager getData:subChapter];
             con.myTitle = @"专项练习";
+            UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            [self.navigationController pushViewController:con animated:YES];
+        }
+            break;
+        case 4://模拟仿真考试
+        {
+            MainTestViewController * con = [[MainTestViewController alloc]init];
+         
             UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;

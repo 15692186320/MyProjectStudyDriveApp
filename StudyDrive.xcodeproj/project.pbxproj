@@ -10,6 +10,8 @@
 		F606335E1CAE27D70097D744 /* SelectModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F606335D1CAE27D70097D744 /* SelectModelView.m */; };
 		F60633611CAE404F0097D744 /* SheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F60633601CAE404F0097D744 /* SheetView.m */; };
 		F60633641CB3A23E0097D744 /* SubTestSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F60633631CB3A23E0097D744 /* SubTestSaleModel.m */; };
+		F60633681CBBE37D0097D744 /* MainTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60633661CBBE37D0097D744 /* MainTestViewController.m */; };
+		F60633691CBBE37D0097D744 /* MainTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F60633671CBBE37D0097D744 /* MainTestViewController.xib */; };
 		F60A9C831C9D1E340069A6B2 /* TestSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A9C821C9D1E340069A6B2 /* TestSelectViewController.m */; };
 		F60A9C871C9D20910069A6B2 /* TestSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F60A9C851C9D20910069A6B2 /* TestSelectTableViewCell.m */; };
 		F60A9C881C9D20910069A6B2 /* TestSelectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F60A9C861C9D20910069A6B2 /* TestSelectTableViewCell.xib */; };
@@ -250,6 +252,9 @@
 		F60633601CAE404F0097D744 /* SheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetView.m; sourceTree = "<group>"; };
 		F60633621CB3A23E0097D744 /* SubTestSaleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTestSaleModel.h; sourceTree = "<group>"; };
 		F60633631CB3A23E0097D744 /* SubTestSaleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTestSaleModel.m; sourceTree = "<group>"; };
+		F60633651CBBE37D0097D744 /* MainTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTestViewController.h; sourceTree = "<group>"; };
+		F60633661CBBE37D0097D744 /* MainTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTestViewController.m; sourceTree = "<group>"; };
+		F60633671CBBE37D0097D744 /* MainTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTestViewController.xib; sourceTree = "<group>"; };
 		F60A9C811C9D1E340069A6B2 /* TestSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSelectViewController.h; sourceTree = "<group>"; };
 		F60A9C821C9D1E340069A6B2 /* TestSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSelectViewController.m; sourceTree = "<group>"; };
 		F60A9C841C9D20910069A6B2 /* TestSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSelectTableViewCell.h; sourceTree = "<group>"; };
@@ -846,6 +851,9 @@
 		F6F02DED1C9BE88400835D5D /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				F60633651CBBE37D0097D744 /* MainTestViewController.h */,
+				F60633661CBBE37D0097D744 /* MainTestViewController.m */,
+				F60633671CBBE37D0097D744 /* MainTestViewController.xib */,
 				F6F02DEA1C9BE87A00835D5D /* FirstViewController.h */,
 				F6F02DEB1C9BE87A00835D5D /* FirstViewController.m */,
 				F60A9C811C9D1E340069A6B2 /* TestSelectViewController.h */,
@@ -1086,6 +1094,7 @@
 				F60A9DC91C9D4E350069A6B2 /* 679.png in Resources */,
 				F60A9DB41C9D4E350069A6B2 /* 331.png in Resources */,
 				F60A9D9B1C9D4E350069A6B2 /* 306.png in Resources */,
+				F60633691CBBE37D0097D744 /* MainTestViewController.xib in Resources */,
 				F60A9D961C9D4E350069A6B2 /* 301.png in Resources */,
 				F60A9D3C1C9D4E350069A6B2 /* 211.png in Resources */,
 				F6713F5E1C9B1B1E004FEC29 /* Assets.xcassets in Resources */,
@@ -1205,6 +1214,7 @@
 				F60A9DD61C9D4E350069A6B2 /* FMResultSet.m in Sources */,
 				F60A9DD41C9D4E350069A6B2 /* FMDatabasePool.m in Sources */,
 				F6E6D4621CA3D22900C1CFE3 /* Tools.m in Sources */,
+				F60633681CBBE37D0097D744 /* MainTestViewController.m in Sources */,
 				F6F02DEC1C9BE87A00835D5D /* FirstViewController.m in Sources */,
 				F6E6D45F1CA3CC2D00C1CFE3 /* AnswerModel.m in Sources */,
 				F6F02DE91C9BDF8B00835D5D /* SelectView.m in Sources */,
