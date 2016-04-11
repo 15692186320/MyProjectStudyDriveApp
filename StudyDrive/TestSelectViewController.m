@@ -27,6 +27,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = _myTitle;
     [self createTableView];
+   
 }
 
 -(void)createTableView{
@@ -67,12 +68,14 @@
         TestSelectModel * model = _dataArray[indexPath.row];
         cell.numberLabel.text = model.pid;
         cell.titleLabel.text = model.pname;
+        
 
     }
     else{
         SubTestSaleModel * model = _dataArray[indexPath.row];
         cell.numberLabel.text = model.serial;
         cell.titleLabel.text = model.sname;
+     
     }
     
     
@@ -86,15 +89,32 @@
     AnswerViewController * avc = [[AnswerViewController alloc]init];
     if (_subtype == 1) {
         avc.answertype = 1;
-        
+        avc.number = (int)indexPath.row;
 
     }else{
         SubTestSaleModel * model = _dataArray[indexPath.row];
         avc.subStrNumber = model.sid;
-        
         avc.answertype = 4;
+        if (indexPath.row == 0 ) {//0 = 选择题 1 = 判断题
+           _celltype = 0;
+        }else if (49 >indexPath.row > 0 && indexPath.row % 2 !=0 ){
+            _celltype = 1;
+        }else if (49 >indexPath.row > 0 && indexPath.row % 2 == 0){
+            _celltype = 0;
+        }else if (indexPath.row == 49){
+            _celltype = 0;
+        }else if (indexPath.row > 49 && indexPath.row % 2 != 0){
+            _celltype = 0;
+        }else{
+            _celltype = 1;
+        }
+        NSLog(@"%ld",(long)indexPath.row);
+        NSLog(@"------%d-------",_celltype);
+        
+        
         
     }
+     avc.ccelltype = _celltype;
     [self.navigationController pushViewController:avc animated:YES];
    
 }

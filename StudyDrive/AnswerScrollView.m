@@ -66,10 +66,17 @@
         _scrollView.showsHorizontalScrollIndicator = NO;
         if (_dataArray.count > 1) {
             _scrollView.contentSize = CGSizeMake(SIZE.width * 2, 0);
-            
+            [self createView];
+
+        }else if (_dataArray.count == 1){
+            _scrollView.contentSize = CGSizeMake(0, 0);
+            _leftTableView.frame = CGRectMake(0, 0, SIZE.width, SIZE.height);
+            [_scrollView addSubview:_leftTableView];
+            [self addSubview:_scrollView];
+
+
         }
-        [self createView];
-    }
+            }
     return self;
 }
 
@@ -151,7 +158,7 @@
     str =[NSString stringWithFormat:@"答案解析:%@",model.mdesc];
         UIFont * font = [UIFont systemFontOfSize:16];
         height = [Tools getSizeWithString:str withFont:font withSize:CGSizeMake(tableView.frame.size.width - 20, 400)].height+20;
-       NSLog(@"test");
+      // NSLog(@"test");
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SIZE.width, height)];
     UILabel * lab = [[UILabel alloc]initWithFrame:CGRectMake(10,10, tableView.frame.size.width - 20,height - 20)];
     lab.text = str;
@@ -182,7 +189,7 @@
         height = [Tools getSizeWithString:str withFont:font withSize:CGSizeMake(tableView.frame.size.width - 20, 400)].height+20;
         
     }
-    NSLog(@"test");
+   // NSLog(@"test");
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SIZE.width, height)];
     UILabel * lab = [[UILabel alloc]initWithFrame:CGRectMake(10,10, tableView.frame.size.width - 20,height - 20)];
     lab.text = [NSString stringWithFormat:@"%d.%@",_currentPage+1,str];
@@ -195,6 +202,8 @@
 
 -(int)getQuestionNumber:(UITableView *)tableView andCurrentPage:(int)page{
     if (tableView == _leftTableView && page == 0) {
+        return 1;
+    }else if (tableView == _leftTableView && page == 0 && _dataArray.count == 1){
         return 1;
     }else if (tableView == _leftTableView && page > 0){
         return page;
@@ -213,13 +222,27 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_dataArray.count  == 1) {
+        int page = [self getQuestionNumber:tableView andCurrentPage:_currentPage];
+        NSLog(@"%d",page);
+        if ([_hadAnswerArray[page - 1] intValue]!=0) {
+            return;
+        }else{
+            [_hadAnswerArray replaceObjectAtIndex:page - 1 withObject:[NSString stringWithFormat:@"%ld",indexPath.row +1]];
+        }
+        [_leftTableView reloadData];
+    }else{
+        
+    
     int page = [self getQuestionNumber:tableView andCurrentPage:_currentPage];
+    NSLog(@"%d",page);
     if ([_hadAnswerArray[page - 1] intValue]!=0) {
         return;
     }else{
         [_hadAnswerArray replaceObjectAtIndex:page - 1 withObject:[NSString stringWithFormat:@"%ld",indexPath.row +1]];
     }
     [self reloadData];
+        }
 }
 
 
@@ -275,6 +298,8 @@
     AnswerModel * model;
     if (tableView == _leftTableView && _currentPage == 0) {
         model = _dataArray[_currentPage];
+    }else if (tableView == _leftTableView && _currentPage == 0 && _dataArray.count == 1){
+        model = _dataArray[_currentPage];
     }else if (tableView == _leftTableView && _currentPage > 0){
         model = _dataArray[_currentPage - 1];
     }else if (tableView == _mainTableView && _currentPage == 0){
@@ -305,6 +330,9 @@
         _mainTableView.frame = CGRectMake(currentOffset.x, 0, SIZE.width, SIZE.height);
         _leftTableView.frame = CGRectMake(currentOffset.x - SIZE.width, 0, SIZE.width, SIZE.height);
         _righTableView.frame = CGRectMake(currentOffset.x + SIZE.width, 0, SIZE.width, SIZE.height);
+    }else if (_dataArray.count == 1 && page >= 0){
+        _currentPage = page;
+        [_leftTableView reloadData];
     }
     _currentPage = page;
     [self reloadData];

@@ -10,6 +10,5 @@
 #import <UIKit/UIKit.h>
 @interface Tools : NSObject
 +(NSArray *)getAnswerWithString:(NSString *)str;
-+(NSArray *)getYNAnswer;
 +(CGSize)getSizeWithString:(NSString*)str withFont:(UIFont *)font withSize:(CGSize)size;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "Tools.h"
-
+#import "MyDataManager.h"
 @implementation Tools
 +(NSArray *)getAnswerWithString:(NSString *)str
 {
@@ -21,14 +21,13 @@
     
 }
 
-+(NSArray *)getYNAnswer{
-    NSMutableArray * array = [[NSMutableArray alloc]initWithObjects:@[@"对",@"错"], nil];
-    return array;
-}
+
 
 +(CGSize)getSizeWithString:(NSString *)str withFont:(UIFont *)font withSize:(CGSize)size
 {
     CGSize newSize = [str sizeWithFont:font constrainedToSize:size];
     return newSize;
 }
+
+
 @end

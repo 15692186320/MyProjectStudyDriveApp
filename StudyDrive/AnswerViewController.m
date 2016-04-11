@@ -12,6 +12,8 @@
 #import "AnswerModel.h"
 #import "SelectModelView.h"
 #import "SheetView.h"
+#import "SubTestSaleModel.h"
+#import "TestSelectViewController.h"
 @interface AnswerViewController ()<SheetViewDelegate>
 {
     AnswerScrollView  * sview;
@@ -34,8 +36,9 @@
     [self.view addSubview:sview];
 
     [self createToolBar];
-    [self createModelView];
-    [self createSheetView];
+   [self createModelView];
+  [self createSheetView];
+    
 }
 
 -(void)createData{
@@ -46,9 +49,12 @@
         
         for (int i = 0; i < array.count-1 ; i++) {
             AnswerModel * model = array[i];
+                
+           
             if ([model.pid intValue] == _number + 1) {
                 [arr addObject:model];
             }
+                
         }
         sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:arr];
               }else if (_answertype == 2)
@@ -60,7 +66,9 @@
         NSArray * array = [MyDataManager getData:answer];
         NSMutableArray * dataArray = [[NSMutableArray alloc]init];
         [temArr addObjectsFromArray:array];
-        for (int i = 0; i < temArr.count; i++) {
+        
+        int t = (int)temArr.count;
+        for (int i = 0; i < t; i++) {
             int index = arc4random()%(temArr.count);
             [dataArray addObject:temArr[index]];
             [temArr removeObjectAtIndex:index];
@@ -69,25 +77,103 @@
     } else if (_answertype == 4) {
         NSMutableArray * arr = [[NSMutableArray alloc]init];
         NSArray * array = [MyDataManager getData:answer];
-        NSMutableArray * temparr = [[NSMutableArray alloc]init];
-        NSLog(@"ciao%d",(int)array.count);
-        
-        for (int i = 0; i < array.count-1 ; i++) {
-            AnswerModel * model = array[i];
-            if ([model.sid isEqualToString:_subStrNumber]&&[model.mtype isEqualToString:[NSString stringWithFormat:@"1"]]) {
-                [arr addObject:model];
-                [temparr addObject:model];
-                sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:arr];
-
-                
-            }else if([model.sid isEqualToString:_subStrNumber]&&[model.mtype isEqualToString:[NSString stringWithFormat:@"2"]]){
-                [temparr addObject:model];
-                sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:temparr];
-
+        NSMutableArray * err = [[NSMutableArray alloc]init];//选择题数组
+        NSMutableArray * frr = [[NSMutableArray alloc]init];//判断题数组
+        for (AnswerModel * ans in array) {
+            if ([ans.mtype intValue] == 1) {
+                [err addObject:ans];
+            }else{
+                [frr addObject:ans];
             }
         }
+        
+        NSLog(@"((((((((((%d))))))))))",_ccelltype);
+        
+//        NSMutableArray * temparr = [[NSMutableArray alloc]init];
+//                NSMutableArray * ttemparr = [[NSMutableArray alloc]init];
+        NSLog(@"ciao%d",(int)array.count);
+
+//        for (int i = 0; i < array.count-1 ; i++) {
+//            AnswerModel * model = array[i];
+        
+        switch (_ccelltype) {
+            case 0:
+                for (AnswerModel * model in array) {
+                    if ([model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue] == 1) {
+                      //  NSLog(@"1caocaocoacoaocaocaocaocaocao");
+                        [arr addObject:model];
+                        sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:arr];
+                        
+                    }
+                }
+                break;
+                
+                case 1:
+                for (AnswerModel * model in array) {
+                    
+               
+    if ([model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue ] == 2){
+                            
+    NSLog(@"caocaocoacoaocaocaocaocaocao");
+    [arr addObject:model];
+sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:arr];
+                            
+                        }
+                    }
+                break;
+            default:
+                break;
+        }
+        
+        
+        
+//if (test.celltype == 0) {
+//for (AnswerModel * model in err) {
+//if ((test.celltype ==1)&&[model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue] == 1) {
+//                    NSLog(@"1caocaocoacoaocaocaocaocaocao");
+//                    [temparr addObject:model];
+//sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:temparr];
+//
+//        }
+//        }
+//}else if (test.celltype == 1){
+//    for (AnswerModel * model in frr) {
+//    if ([model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue ] == 2){
+//        
+//    NSLog(@"caocaocoacoaocaocaocaocaocao");
+//                        [ttemparr addObject:model];
+//                        sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:ttemparr];
+//        
+//                    }
+//                }
+//
+//    
+//}
+
     
-}
+        
+        
+        
+        
+        
+//        for (AnswerModel * model in err) {
+//            
+//        if ((test.celltype ==1)&&[model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue] == 1) {
+//               NSLog(@"1caocaocoacoaocaocaocaocaocao");
+//                [temparr addObject:model];
+//                sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:temparr];
+//            }else if ((test.celltype == 1 )&&[model.sid isEqualToString:_subStrNumber]&&[model.mtype intValue ] == 2){
+//            for (AnswerModel * model in frr) {
+//
+//            NSLog(@"caocaocoacoaocaocaocaocaocao");
+//                [ttemparr addObject:model];
+//                sview = [[AnswerScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 - 60) withDataArray:ttemparr];
+//
+//            }
+//        }
+//    
+
+    }
 
 }
 

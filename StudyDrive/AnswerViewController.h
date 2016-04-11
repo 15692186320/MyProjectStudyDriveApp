@@ -13,5 +13,5 @@
 @property(nonatomic,copy)NSString * subStrNumber;
 //type = 1章节 type =2 顺序 type = 3随机 type = 4专项练习
 @property(nonatomic,assign) int answertype;
-
+@property(nonatomic,assign) int ccelltype;
 @end

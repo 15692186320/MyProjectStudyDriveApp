@@ -14,5 +14,5 @@
 @property(nonatomic,copy)NSArray * dataArray;
 //type=1章节  type=2专项
 @property(nonatomic,assign)int subtype;
-
+@property(nonatomic,assign) int celltype;
 @end
